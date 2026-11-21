@@ -1,0 +1,17 @@
+README.md
+pyproject.toml
+src/observatoire_energie_qc/__init__.py
+src/observatoire_energie_qc/analysis.py
+src/observatoire_energie_qc/collector.py
+src/observatoire_energie_qc/kafka.py
+src/observatoire_energie_qc/main.py
+src/observatoire_energie_qc/models.py
+src/observatoire_energie_qc/persistence.py
+src/observatoire_energie_qc.egg-info/PKG-INFO
+src/observatoire_energie_qc.egg-info/SOURCES.txt
+src/observatoire_energie_qc.egg-info/dependency_links.txt
+src/observatoire_energie_qc.egg-info/requires.txt
+src/observatoire_energie_qc.egg-info/top_level.txt
+tests/test_analysis.py
+tests/test_collector.py
+tests/test_models.py
