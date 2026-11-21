@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alertes>
+  <alerte id="ALT-01">
+    <region>Lanaudiere</region>
+    <type>Verglas</type>
+    <severite>Elevee</severite>
+  </alerte>
+  <alerte id="ALT-02">
+    <region>Montreal</region>
+    <type>Vents violents</type>
+    <severite>Moderee</severite>
+  </alerte>
+</alertes>

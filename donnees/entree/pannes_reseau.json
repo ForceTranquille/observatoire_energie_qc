@@ -1,0 +1,4 @@
+[
+  {"id_panne": "HQ-901", "region": "Lanaudiere", "clients_touches": 420, "cause": "Bris d'equipement"},
+  {"id_panne": "HQ-902", "region": "Montreal", "clients_touches": 85, "cause": "Conditions meteorologiques"}
+]

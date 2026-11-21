@@ -1,0 +1,2 @@
+event_id,horodatage_utc,source,format_origine,categorie,region,url_source,titre_page,extrait_contenu,nb_paragraphes,delai_precedent_s
+6de6b786c0519d08,2026-11-21T02:18:32.834309+00:00,Meteo_MTL_Scraping,HTML,web_scraping,Montreal,"https://meteo.gc.ca/fr/location/index.html?coords=45.509,-73.554","Montréal, QC - Prévision 7 jours - Environnement Canada","En raison des récents changements de fuseaux horaires dans certaines provinces et certains territoires, il se peut que l’information sur l’heure n’apparaisse pas correctement sur notre site Web. Le co",42.0,0.0

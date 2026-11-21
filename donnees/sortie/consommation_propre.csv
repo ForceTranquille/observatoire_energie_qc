@@ -1,0 +1,4 @@
+event_id,horodatage_utc,source,format_origine,categorie,region,temperature_c,date,demande_mw
+d16c0959aa9d0230,2026-11-20T20:48:52.713195+00:00,HQ_Historique_CSV,CSV,consommation,Montreal,-4.2,2026-11-18T08:00:00Z,14250.5
+e38696319e552aad,2026-11-20T20:48:52.713235+00:00,HQ_Historique_CSV,CSV,consommation,Montreal,-6.8,2026-11-18T17:00:00Z,16890.0
+3d692b1884e59b61,2026-11-20T20:48:52.713252+00:00,HQ_Historique_CSV,CSV,consommation,Lanaudiere,-8.5,2026-11-18T17:00:00Z,3120.4

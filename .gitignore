@@ -1,0 +1,39 @@
+# Environnements virtuels Python
+.venv/
+venv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Cache et fichiers compiles Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Variables d'environnement et secrets locaux
+.env
+.env.*
+!.env.example
+
+# IDE / Editeurs (PyCharm, VS Code)
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Archives temporaires
+*.7z
+*.zip
+*.tar.gz
+*.rar
+
+# Logs et fichiers systeme Windows
+*.log
+Thumbs.db
+Desktop.ini

@@ -1,0 +1,3 @@
+event_id,horodatage_utc,source,format_origine,categorie,region,id_alerte,type_alerte,severite
+e03e04c155f89a81,2026-11-20T20:48:52.714673+00:00,Alertes_XML,XML,alerte,Lanaudiere,ALT-01,Verglas,Elevee
+d7c7dd550a17e890,2026-11-20T20:48:52.714704+00:00,Alertes_XML,XML,alerte,Montreal,ALT-02,Vents violents,Moderee

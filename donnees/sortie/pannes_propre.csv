@@ -1,0 +1,3 @@
+event_id,horodatage_utc,source,format_origine,categorie,region,id_panne,clients_touches,cause
+857e22b03d2c34d9,2026-11-20T20:48:52.713958+00:00,HQ_Pannes_JSON,JSON,pannes,Lanaudiere,HQ-901,420.0,Bris d'equipement
+bf3b95388e13e77e,2026-11-20T20:48:52.713986+00:00,HQ_Pannes_JSON,JSON,pannes,Montreal,HQ-902,85.0,Conditions meteorologiques
