@@ -22,9 +22,10 @@ artificielle*, Collège de Bois-de-Boulogne, Automne 2026), supervisé par **Haf
 | --- | --- | --- | --- |
 | 1 | Open-Meteo (Montréal, Lanaudière) | API REST | `collecte/api_collecteur.py` |
 | 2 | Demande du Québec, pas de 15 min (données ouvertes Hydro-Québec) | JSON | `collecte/demande_hq_collecteur.py` |
-| 3 | Historique de consommation (exemple) | CSV | `collecte/fichier_collecteur.py` |
-| 4 | Pannes réseau (exemple) | JSON | `collecte/fichier_collecteur.py` |
-| 5 | Alertes météo (exemple) | XML | `collecte/xml_collecteur.py` |
+| 3 | Historique de consommation (exemple fictif) | CSV | `collecte/fichier_collecteur.py` |
+| 4 | Pannes en cours, Québec entier (données réelles) | JSON | `collecte/pannes_hq_collecteur.py` |
+| 4b | Pannes réseau (exemple fictif) | JSON | `collecte/fichier_collecteur.py` |
+| 5 | Alertes météo (exemple fictif) | XML | `collecte/xml_collecteur.py` |
 | 6 | Pages Météo Canada (Montréal, Lanaudière) | HTML | `collecte/web_scraping_collecteur.py` |
 
 **Scraping conforme :** `robots.txt` est lu avant chaque requête (`collecte/robots.py`) et
@@ -51,7 +52,7 @@ sujet Kafka -> consommateur
                     |-> exports CSV -> analyse et graphiques
 ```
 
-Le workflow détaillé, avec sa notation, est dans [`docs/workflow.md`](docs/workflow.md).
+Le workflow détaillé, avec sa notation, est dans [`docs/workflow.md`](docs/workflow.md). Les règles d'éthique de collecte (`robots.txt`, pauses de 13/15/18 s) sont dans [`docs/ethique_scraping.md`](docs/ethique_scraping.md).
 
 ---
 
@@ -112,7 +113,7 @@ entre **Montréal** et **Lanaudière** :
 * **Visuels :** segment `region`, KPI *Demande moyenne (MW)* et *Total clients touchés*,
   graphiques de demande, de clients touchés et de croisement demande / température.
 
-La demande du Québec (`demande_quebec_propre.csv`) est exportée à part et **n'entre pas** dans
+La demande du Québec (`demande_quebec_propre.csv`) et les pannes réelles (`pannes_en_cours_propre.csv`, sans région) sont exportées à part et **n'entre pas** dans
 `dataset_energie_normalise.csv`, pour ne pas fausser les KPI régionaux du tableau de bord.
 
 ---

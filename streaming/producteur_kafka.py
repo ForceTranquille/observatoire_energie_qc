@@ -33,6 +33,7 @@ class ProducteurEnergieKafka:
             "consommation": TOPICS["consommation"],
             "demande_quebec": TOPICS["demande_quebec"],
             "pannes": TOPICS["pannes"],
+            "pannes_en_cours": TOPICS["pannes_en_cours"],
             "alerte": TOPICS["alertes"],
         }
         return mapping.get(categorie, TOPICS["meteo"])

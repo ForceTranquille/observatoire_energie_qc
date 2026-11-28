@@ -11,7 +11,7 @@ class ExporteurEnergie:
     (Montréal / Lanaudière) lu par le tableau de bord Power BI.
     """
 
-    CATEGORIES_HORS_GLOBAL = ("demande_quebec",)
+    CATEGORIES_HORS_GLOBAL = ("demande_quebec", "pannes_en_cours")
 
     def __init__(self, dossier_sortie: Path):
         self._dossier_sortie = Path(dossier_sortie)

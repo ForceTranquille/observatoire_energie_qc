@@ -8,6 +8,7 @@ TOPICS = {
     "meteo": "energie.meteo.raw",
     "consommation": "energie.consommation.raw",
     "demande_quebec": "energie.demande.raw",
+    "pannes_en_cours": "energie.pannes_en_cours.raw",
     "pannes": "energie.pannes.raw",
     "alertes": "energie.alertes.xml",
 }
