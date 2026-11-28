@@ -1,11 +1,5 @@
 # Observatoire Énergétique QC (`observatoire_energie_qc`)
 
-[![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![Apache Kafka](https://img.shields.io/badge/Apache%20Kafka-KRaft-231F20?logo=apachekafka&logoColor=white)](https://kafka.apache.org/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Normalized%20Series-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-Raw%20Archive-47A248?logo=mongodb&logoColor=white)](https://www.mongodb.com/)
-[![Docker](https://img.shields.io/badge/Docker-Compose%20%7C%20CI%2FCD-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
-
 Pipeline de données bout-en-bout : acquisition multi-source, validation et idempotence,
 diffusion événementielle (**Apache Kafka** en mode **KRaft**), double persistance
 (**MongoDB** / **PostgreSQL**), analyse comparative **Montréal vs Lanaudière** et
