@@ -1,4 +1,4 @@
-# Observatoire Énergétique QC (`observatoire_energie_qc`)
+# Observatoire Énergétique QC (`observatoire_energie_qc`) — Branche `feat/powerbi`
 
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Apache Kafka](https://img.shields.io/badge/Apache%20Kafka-KRaft-231F20?logo=apachekafka&logoColor=white)](https://kafka.apache.org/)
@@ -10,6 +10,9 @@ Pipeline de données bout-en-bout : acquisition multi-source, validation et idem
 diffusion événementielle (**Apache Kafka** en mode **KRaft**), double persistance
 (**MongoDB** / **PostgreSQL**), analyse comparative **Montréal vs Lanaudière** et
 visualisation (**Power BI**).
+
+> **Cette branche = `main` + le tableau de bord Power BI.** Le code Python est identique à `main` ; seul le dossier
+> `powerbi/` et ce README sont propres à la branche. Pour le pipeline seul, voir la branche `main`.
 
 Réalisé dans le cadre du cours **420-C71-BB** (AEC *Spécialiste en solutions d'intelligence
 artificielle*, Collège de Bois-de-Boulogne, Automne 2026), supervisé par **Hafed Benteftifa**.
@@ -104,17 +107,33 @@ La correspondance exigence par exigence est dans
 
 ## Tableau de bord Power BI
 
-Le fichier `powerbi/observatoire_energie_qc.pbix` vit sur la branche **`feat/powerbi`**. Il lit
-les sorties nettoyées de `donnees/sortie/` pour comparer la demande, les pannes et la météo
-entre **Montréal** et **Lanaudière** :
+Fichier : `powerbi/observatoire_energie_qc.pbix` (Power BI Desktop). Il lit les CSV nettoyés de `donnees/sortie/`
+pour comparer la demande, les pannes et la météo entre **Montréal** et **Lanaudière**.
 
-* **Sources :** `dataset_energie_normalise.csv`, `croisement_conso_meteo.csv`,
-  `pannes_propre.csv`, `web_scraping_propre.csv`.
-* **Visuels :** segment `region`, KPI *Demande moyenne (MW)* et *Total clients touchés*,
-  graphiques de demande, de clients touchés et de croisement demande / température.
+**Utiliser le tableau de bord**
 
-La demande du Québec (`demande_quebec_propre.csv`) et les pannes réelles (`pannes_en_cours_propre.csv`, sans région) sont exportées à part et **n'entre pas** dans
-`dataset_energie_normalise.csv`, pour ne pas fausser les KPI régionaux du tableau de bord.
+1. Générer les CSV : `python mod_main.py` (Docker Compose démarré, voir *Démarrage rapide*).
+2. Ouvrir `powerbi/observatoire_energie_qc.pbix`, puis *Accueil > Actualiser*.
+3. Si Power BI ne trouve plus les fichiers : *Transformer les données > Paramètres de la source de données* et
+   pointer vers le dossier `donnees/sortie/` de ton poste.
+
+**Sources du modèle**
+
+| Fichier | Contenu | Origine des données |
+| --- | --- | --- |
+| `dataset_energie_normalise.csv` | événements normalisés (Montréal, Lanaudière) | mixte |
+| `croisement_conso_meteo.csv` | demande et météo par région | demande : **exemple**, météo : réelle |
+| `pannes_propre.csv` | pannes par région | **exemple** (2 lignes) |
+| `web_scraping_propre.csv` | pages Météo Canada scrapées | réelle |
+
+**Visuels** : segment `region` (`Lanaudiere` / `Montreal`) qui pilote la page, KPI *Demande moyenne (MW)* et
+*Total clients touchés*, graphiques *Demande (MW) par région*, *Clients touchés* et *Demande et température*.
+
+**À lire avant d'interpréter les chiffres.** Les KPI de demande et de pannes viennent de fichiers d'exemple de quelques
+lignes : ils démontrent le modèle, ils ne mesurent pas Hydro-Québec. Les données réelles (demande du Québec,
+`demande_quebec_propre.csv`, et pannes en cours, `pannes_en_cours_propre.csv`) couvrent tout le Québec, sans région
+Montréal ou Lanaudière ; elles sont exportées à part et **ne sont pas** dans le modèle actuel, pour ne pas fausser les
+KPI régionaux. Pour les afficher, ajouter ces deux CSV comme sources dans Power BI.
 
 ---
 
