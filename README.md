@@ -120,9 +120,13 @@ La demande du Québec (`demande_quebec_propre.csv`) et les pannes réelles (`pan
 
 ## Stratégie de branches
 
-* **`main` :** pipeline de collecte, Kafka (KRaft), MongoDB, PostgreSQL et analyse.
-* **`feat/powerbi` :** artefacts **Power BI** (`powerbi/observatoire_energie_qc.pbix`) et
-  documentation BI associée.
+Le dépôt n'a que **deux branches** :
+
+* **`main` :** tout le code Python (collecte, Kafka KRaft, MongoDB, PostgreSQL, analyse), les tests et la documentation.
+* **`feat/powerbi` :** `main` plus le tableau de bord **Power BI** (`powerbi/observatoire_energie_qc.pbix`).
+
+Flux de travail : on modifie et on teste le Python sur `main`, puis on fusionne `main` dans `feat/powerbi`
+(`git checkout feat/powerbi` puis `git merge main`) pour que le tableau de bord suive le code.
 
 ---
 
