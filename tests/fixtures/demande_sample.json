@@ -1,0 +1,16 @@
+{
+  "dateStart" : "2026-11-23T00:00:00",
+  "dateEnd" : "2026-11-25T00:00:00",
+  "recentHour" : "2026-11-24T21:00:00",
+  "indexDonneePlusRecent" : 180,
+  "nbDateAvecData" : 181,
+  "details" : [
+    {"date" : "2026-11-23T00:00:00", "valeurs" : {"demandeTotal" : 18359.0}},
+    {"date" : "2026-11-23T00:15:00", "valeurs" : {"demandeTotal" : 18141.0}},
+    {"date" : "2026-11-23T00:30:00", "valeurs" : {"demandeTotal" : 17997.0}},
+    {"date" : "2026-11-24T20:45:00", "valeurs" : {"demandeTotal" : 26463.0}},
+    {"date" : "2026-11-24T21:00:00", "valeurs" : {"demandeTotal" : 26291.0}},
+    {"date" : "2026-11-24T21:15:00", "valeurs" : { }},
+    {"date" : "2026-11-24T21:30:00", "valeurs" : { }}
+  ]
+}
