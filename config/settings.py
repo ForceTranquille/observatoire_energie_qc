@@ -6,6 +6,8 @@ load_dotenv()
 KAFKA_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092")
 TOPICS = {
     "meteo": "energie.meteo.raw",
+    "consommation": "energie.consommation.raw",
+    "demande_quebec": "energie.demande.raw",
     "pannes": "energie.pannes.raw",
     "alertes": "energie.alertes.xml",
 }

@@ -30,7 +30,8 @@ class ProducteurEnergieKafka:
     def _topic_pour_categorie(self, categorie: str) -> str:
         mapping = {
             "meteo": TOPICS["meteo"],
-            "consommation": TOPICS.get("consommation", TOPICS["meteo"]),
+            "consommation": TOPICS["consommation"],
+            "demande_quebec": TOPICS["demande_quebec"],
             "pannes": TOPICS["pannes"],
             "alerte": TOPICS["alertes"],
         }
