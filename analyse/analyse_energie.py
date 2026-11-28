@@ -14,7 +14,7 @@ class AnalyseurEnergie:
 
     def charger_datasets(self) -> Dict[str, pd.DataFrame]:
         datasets: Dict[str, pd.DataFrame] = {}
-        for nom in ("meteo", "consommation", "pannes", "alerte"):
+        for nom in ("meteo", "consommation", "demande_quebec", "pannes", "pannes_en_cours", "alerte"):
             fichier = self._dossier_entree / f"{nom}_propre.csv"
             if fichier.exists():
                 datasets[nom] = pd.read_csv(fichier)
@@ -88,5 +88,38 @@ class AnalyseurEnergie:
             fig.savefig(chemin, dpi=150)
             plt.close(fig)
             figures["clients_panne"] = chemin
+
+        # 3. Demande du Québec au pas de 15 min (données ouvertes Hydro-Québec)
+        df_qc = datasets.get("demande_quebec")
+        if df_qc is not None and {"date", "demande_mw"}.issubset(df_qc.columns) and not df_qc.empty:
+            serie = df_qc.assign(date=pd.to_datetime(df_qc["date"], errors="coerce"))
+            serie = serie.dropna(subset=["date"]).drop_duplicates(subset=["date"]).sort_values("date")
+            fig, ax = plt.subplots(figsize=(9, 4))
+            ax.plot(serie["date"], serie["demande_mw"], color="#1f77b4", linewidth=1.5)
+            ax.set_title("Demande électrique du Québec (pas de 15 min)")
+            ax.set_xlabel("Date et heure")
+            ax.set_ylabel("Demande (MW)")
+            fig.autofmt_xdate()
+            fig.tight_layout()
+            chemin = self._dossier_figures / "demande_quebec_15min.png"
+            fig.savefig(chemin, dpi=150)
+            plt.close(fig)
+            figures["demande_quebec"] = chemin
+
+        # 4. Pannes en cours (données réelles d'Hydro-Québec) : 10 pannes les plus importantes
+        df_reel = datasets.get("pannes_en_cours")
+        if df_reel is not None and {"id_panne", "clients_touches"}.issubset(df_reel.columns) and not df_reel.empty:
+            top = df_reel.dropna(subset=["clients_touches"]).drop_duplicates(subset=["id_panne"])
+            top = top.nlargest(10, "clients_touches")
+            fig, ax = plt.subplots(figsize=(9, 4))
+            ax.barh(top["id_panne"].astype(str), top["clients_touches"], color="#d62728")
+            ax.invert_yaxis()
+            ax.set_title("Pannes en cours au Québec : 10 plus importantes (données réelles)")
+            ax.set_xlabel("Clients touchés")
+            fig.tight_layout()
+            chemin = self._dossier_figures / "pannes_en_cours_top10.png"
+            fig.savefig(chemin, dpi=150)
+            plt.close(fig)
+            figures["pannes_en_cours"] = chemin
 
         return figures

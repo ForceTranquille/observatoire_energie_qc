@@ -9,6 +9,8 @@ from base_de_donnees.mongo_repo import MongoBrutRepository
 from base_de_donnees.postgres_repo import PostgresEnergieRepository
 from collecte.api_collecteur import ApiMeteoCollecteur
 from collecte.base_collecteur import BaseCollecteur
+from collecte.demande_hq_collecteur import DemandeHQCollecteur
+from collecte.pannes_hq_collecteur import PannesHQCollecteur
 from collecte.fichier_collecteur import CsvConsommationCollecteur, JsonPanneCollecteur
 from collecte.web_scraping_collecteur import WebScrapingCollecteur
 from collecte.xml_collecteur import XmlAlerteCollecteur
@@ -19,6 +21,9 @@ from streaming.consommateur_kafka import ConsommateurEnergieKafka
 from streaming.producteur_kafka import ProducteurEnergieKafka
 
 console = Console()
+
+URL_MTL = "https://meteo.gc.ca/fr/location/index.html?coords=45.509,-73.554"
+URL_LANAUDIERE = "https://meteo.gc.ca/fr/location/index.html?coords=46.017,-73.433"
 
 
 def _fermer_ressources(*ressources: Optional[object]) -> None:
@@ -48,13 +53,17 @@ def executer_pipeline() -> None:
     collecteurs: List[BaseCollecteur] = [
         ApiMeteoCollecteur("OpenMeteo_Montreal", 45.5017, -73.5673, "Montreal"),
         ApiMeteoCollecteur("OpenMeteo_Lanaudiere", 46.0167, -73.4333, "Lanaudiere"),
+        # Trois sources ci-dessous : fichiers d'EXEMPLE (donnees/entree/), pas des données réelles
         CsvConsommationCollecteur("HQ_Historique_CSV", base_entree / "historique_consommation.csv"),
+        DemandeHQCollecteur("HQ_Demande_JSON"),
+        PannesHQCollecteur("HQ_Pannes_Reelles"),
         JsonPanneCollecteur("HQ_Pannes_JSON", base_entree / "pannes_reseau.json"),
         XmlAlerteCollecteur("Alertes_XML", base_entree / "alertes_meteo.xml"),
         WebScrapingCollecteur(
             "Meteo_MTL_Scraping",
-            urls=["https://meteo.gc.ca/fr/location/index.html?coords=45.509,-73.554"],
+            urls=[URL_MTL, URL_LANAUDIERE],
             region="Montreal",
+            regions_par_url={URL_MTL: "Montreal", URL_LANAUDIERE: "Lanaudiere"},
         ),
     ]
 

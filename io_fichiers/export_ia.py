@@ -4,7 +4,14 @@ import pandas as pd
 
 
 class ExporteurEnergie:
-    """Nettoie, déduplique et exporte les événements normalisés."""
+    """Nettoie, déduplique et exporte les événements normalisés.
+
+    Les catégories de CATEGORIES_HORS_GLOBAL ont leur propre fichier mais ne sont
+    pas mêlées à `dataset_energie_normalise.csv`, qui reste le jeu régional
+    (Montréal / Lanaudière) lu par le tableau de bord Power BI.
+    """
+
+    CATEGORIES_HORS_GLOBAL = ("demande_quebec", "pannes_en_cours")
 
     def __init__(self, dossier_sortie: Path):
         self._dossier_sortie = Path(dossier_sortie)
@@ -33,7 +40,8 @@ class ExporteurEnergie:
         fichiers_generes: Dict[str, Path] = {}
 
         chemin_global = self._dossier_sortie / "dataset_energie_normalise.csv"
-        df.to_csv(chemin_global, index=False, encoding="utf-8")
+        df_global = df[~df["categorie"].isin(self.CATEGORIES_HORS_GLOBAL)]
+        df_global.to_csv(chemin_global, index=False, encoding="utf-8")
         fichiers_generes["global"] = chemin_global
 
         if "categorie" in df.columns:
